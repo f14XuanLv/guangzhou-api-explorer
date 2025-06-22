@@ -1,0 +1,5 @@
+{
+  "name": "Guangzhou API Explorer",
+  "description": "An interactive client to explore and test the Guangzhou Geographic Information API.",
+  "requestFramePermissions": []
+}

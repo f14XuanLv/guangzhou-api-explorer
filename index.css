@@ -1,0 +1,364 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f4f7f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+#root {
+    /* Max-width removed to allow app-container to control width */
+    margin: 0 auto;
+    padding: 0; /* Changed from 20px, app-container will handle padding */
+}
+
+.app-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1600px; /* Increased max-width for wider layout */
+    margin: 0 auto;
+    padding: 20px;
+    gap: 30px; /* Gap between left and right panels */
+}
+
+.left-panel {
+    flex: 0 0 450px; /* Fixed width for left panel */
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Gap between sections in left panel */
+    min-width: 320px;
+}
+
+.right-panel {
+    flex: 1; /* Takes remaining space */
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Gap between sections in right panel (if multiple) */
+    min-width: 0; /* Allow shrinking */
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    /* margin-bottom removed as gap is handled by parent flex container */
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em; /* Adjusted for panel context */
+    font-weight: 600;
+}
+
+.section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    /* margin-bottom removed as gap is handled by parent flex container */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section h2 {
+    margin-top: 0;
+    color: #3498db;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    font-size: 1.5em; /* Adjusted for panel context */
+}
+
+.api-config-section .config-item:last-of-type {
+    margin-bottom: 0; /* Remove bottom margin if it's the last direct child before a button, for example */
+}
+
+
+.config-item {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px; 
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px; 
+    border: 1px solid #d1d9e0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 0.95em; 
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.base-url-note {
+    font-size: 0.8em; /* Slightly smaller for more text */
+    color: #7f8c8d;
+    margin-top: 6px; /* Reduced margin */
+    line-height: 1.4; /* Adjusted line height */
+}
+.base-url-note code {
+    background-color: #e9ecef;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+
+.api-docs-container {
+    background-color: #f8f9fa; /* Lighter background for the content area */
+    color: #2c3e50;           /* Darker text for readability on light background */
+    border: 1px solid #e9ecef; /* Subtle border */
+    padding: 15px; 
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;        /* Slightly increased font size */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 700px;       /* Increased max-height for more content visibility */
+    overflow-y: auto;
+}
+
+.api-example-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px; /* Keeps spacing between cards in right panel */
+    background-color: #fdfdfd;
+}
+.right-panel .section .api-example-card:last-child {
+    margin-bottom: 0; /* Remove margin from last card */
+}
+
+
+.api-example-card h3 {
+    margin-top: 0;
+    color: #2980b9;
+    font-size: 1.3em;
+}
+
+.api-example-card p {
+    color: #555;
+    font-size: 0.9em; 
+    margin-bottom: 10px; 
+}
+
+.params-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 20px; /* row-gap column-gap */
+    margin-bottom: 15px; 
+}
+
+.param-item {
+    flex: 1 1 calc(50% - 20px); 
+    min-width: 200px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.param-item label {
+    margin-bottom: 4px;
+}
+
+
+.button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 18px; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em; 
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+.button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #2c3e50; 
+    border-radius: 50%;
+    width: 14px; 
+    height: 14px; 
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+.button .loader { /* if loader is inside button with white text */
+     border-top: 3px solid #ecf0f1;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.area-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; 
+}
+
+.area-header h4 {
+    margin-top: 0;
+    margin-bottom: 0; 
+    color: #2c3e50;
+    font-size: 1.0em; 
+}
+
+.copy-button {
+    padding: 4px 10px; 
+    font-size: 0.8em; 
+    background-color: #7f8c8d; 
+}
+
+.copy-button:hover {
+    background-color: #95a5a6;
+}
+
+.copy-button:disabled {
+    background-color: #bdc3c7;
+    opacity: 0.7;
+}
+
+
+.request-url-area {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #e9ecef;
+}
+.response-area {
+    margin-top: 15px; 
+    padding: 12px; 
+    border-radius: 6px;
+    background-color: #e9ecef;
+}
+
+
+.response-area pre, .request-url-area code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85em; 
+    max-height: 250px; 
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 8px; 
+    border-radius: 4px;
+    display: block; 
+}
+
+.error-message {
+    color: #c0392b; 
+    background-color: #fdd; 
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px; /* Added some top margin for standalone messages */
+    font-size: 0.9em;
+    border: 1px solid #fbb;
+}
+
+.success-message {
+    color: #27ae60; 
+    background-color: #e6ffed; 
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px; /* Added some top margin for standalone messages */
+    font-size: 0.9em;
+    border: 1px solid #c8f7d8;
+}
+
+.info-message {
+    color: #2980b9; 
+    background-color: #eaf5ff; 
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px; /* Added some top margin for standalone messages */
+    font-size: 0.9em;
+    border: 1px solid #c5e1f9;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) { /* Adjusted breakpoint for two-column layout */
+    .app-container {
+        flex-direction: column;
+        gap: 20px; /* Adjust gap for stacked layout */
+    }
+    .left-panel, .right-panel {
+        flex-basis: auto; /* Allow panels to take full width */
+        width: 100%;
+        gap: 20px; /* Adjust gap for stacked layout */
+    }
+    .api-docs-container {
+        max-height: 500px; /* Adjusted for tablet screens */
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    .section h2 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+    header h1 {
+        font-size: 1.6em; /* Further reduce for very small screens */
+    }
+    .section h2 {
+        font-size: 1.3em;
+    }
+    .api-example-card h3 {
+        font-size: 1.2em;
+    }
+
+    .params-container {
+        gap: 10px; 
+    }
+    .param-item {
+        flex: 1 1 100%; 
+        min-width: unset; 
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    .button {
+        font-size: 0.9em;
+    }
+    .api-docs-container {
+        max-height: 350px; /* Adjusted for mobile screens */
+        font-size: 0.85em; /* Slightly reduce font size on very small screens for docs */
+    }
+}
